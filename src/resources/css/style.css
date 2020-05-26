@@ -1,3 +1,8 @@
+@font-face{
+    font-family: 'Optien';
+    src: url('..\fonts\Optien.ttf');
+}
+
 .button{
     -fx-background-color: #252529;
     -fx-text-fill: #ffffff;
@@ -5,4 +10,8 @@
 
 .button:hover{
     -fx-background-color: #3A3A3D;
+}
+
+.text{
+    -fx-font-family: "Optien";
 }
