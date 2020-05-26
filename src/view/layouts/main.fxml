@@ -23,7 +23,7 @@
                         <Image url="@../../resources/icons/icons8-seringa-96.png" />
                      </image>
                   </ImageView>
-                  <Label id="#test" layoutX="89.0" layoutY="85.0" prefHeight="35.0" prefWidth="140.0" text="Covid Vaccine" textFill="WHITE">
+                  <Label id="test" layoutX="89.0" layoutY="85.0" prefHeight="35.0" prefWidth="140.0" text="Covid Vaccine" textFill="WHITE">
                      <font>
                         <Font name="Dubai Medium" size="23.0" />
                      </font>
