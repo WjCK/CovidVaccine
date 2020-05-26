@@ -9,7 +9,8 @@ import java.sql.Statement;
 public class TransactionDB {
 
     Logger logger;
-    private static final String JDBC_DRIVER = "mariadb-java-client-2.6.0";
+    private static final String JDBC_DRIVER = System.getProperty("user.dir") + "\\src\\external\\"
+            + "mariadb-java-client-2.6.0";
     Connection connection = null;
     String url = "jdbc:mariadb://localhost:3306/covid";
     String user = "welder";
