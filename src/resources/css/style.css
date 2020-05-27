@@ -1,17 +1,47 @@
-@font-face{
+/* @font-face{
     font-family: 'Optien';
     src: url('..\fonts\Optien.ttf');
-}
+} */
 
-.button{
+#menuButton{
     -fx-background-color: #252529;
     -fx-text-fill: #ffffff;
 }
 
-.button:hover{
+#menuButton:hover{
     -fx-background-color: #3A3A3D;
 }
 
+#vbox{
+    -fx-border-left-style: none;
+    -fx-border-color: #44475a;
+    -fx-border-insets: 5;
+    -fx-border-width: 2;
+    -fx-border-style: solid;
+}
+
+#textField{
+    -fx-text-fill: #ffffff;
+}
+
+#buttonSave{
+    -fx-background-color: #22222a;
+    -fx-text-fill: #ffffff;
+}
+
+#buttonCancel{
+    -fx-background-color: #22222a;
+    -fx-text-fill: #ffffff;
+}
+
+#buttonSave:hover{
+    -fx-background-color: #2a2a35;
+}
+
+#buttonCancel:hover{
+    -fx-background-color: #2a2a35;
+}
+/* 
 #test{
     -fx-font-family: "Optien";
-}
+} */
