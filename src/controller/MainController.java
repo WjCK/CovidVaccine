@@ -55,17 +55,35 @@ public class MainController implements Initializable {
 
     @FXML
     void loadDeletePatient(ActionEvent event) {
-
+        Pane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("/view/layouts/deletePatient.fxml"));
+            mainPane.getChildren().setAll(pane);
+        } catch (Exception e) {
+            logger.log(Level.ERROR, e);
+        }
     }
 
     @FXML
     void loadUpdatePatient(ActionEvent event) {
-
+        Pane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("/view/layouts/updatePatient.fxml"));
+            mainPane.getChildren().setAll(pane);
+        } catch (Exception e) {
+            logger.log(Level.ERROR, e);
+        }
     }
 
     @FXML
     void loadCheckPatient(ActionEvent event) {
-
+        Pane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("/view/layouts/searchPatient.fxml"));
+            mainPane.getChildren().setAll(pane);
+        } catch (Exception e) {
+            logger.log(Level.ERROR, e);
+        }
     }
 
 }

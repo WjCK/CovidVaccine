@@ -3,6 +3,12 @@
     src: url('..\fonts\Optien.ttf');
 } */
 
+#tableView{
+    -fx-background-color: #3A3A3D;
+    -fx-text-fill: #ffffff;
+}
+
+
 #menuButton{
     -fx-background-color: #252529;
     -fx-text-fill: #ffffff;
@@ -13,7 +19,6 @@
 }
 
 #vbox{
-    -fx-border-left-style: none;
     -fx-border-color: #44475a;
     -fx-border-insets: 5;
     -fx-border-width: 2;

@@ -15,9 +15,9 @@ public class Patient {
     private int id;
     @Column(columnName = "PatientName")
     private String patientName;
+    @Column(columnName = "Gender")
+    private String gender;
     @Column(columnName = "Age")
-    private String sex;
-    @Column(columnName = "Sex")
     private int age;
     @Column(columnName = "Weight")
     private double weight;
@@ -40,12 +40,12 @@ public class Patient {
         this.patientName = patientName;
     }
 
-    public String getSex() {
-        return sex;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public int getAge() {
