@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import util.FormException;
 
 public class CreateController implements Initializable {
 
@@ -33,7 +34,7 @@ public class CreateController implements Initializable {
     private JFXDatePicker dateAppointment;
 
     @FXML
-    private JFXComboBox<?> cmbGender;
+    private JFXComboBox<String> cmbGender;
 
     @FXML
     private JFXButton btnSave;
@@ -43,6 +44,8 @@ public class CreateController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        cmbGender.getItems().add("Male");
+        cmbGender.getItems().add("Female");
         validateForm();
     }
 
@@ -73,6 +76,22 @@ public class CreateController implements Initializable {
                 txtWeight.setText(oldValue);
             }
         });
+
+        if (dateAppointment.getValue() == null) {
+            try {
+                throw new FormException("Error", "Try inserting a date, please");
+            } catch (FormException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (cmbGender.getValue().isEmpty()) {
+            try {
+                throw new FormException("Error", "Select a gender please");
+            } catch (FormException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 
