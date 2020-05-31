@@ -2,6 +2,8 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "f:\\Downloads\\jfoenix-9.0.8.jar",
-        "f:\\Downloads\\fontawesomefx-8.2.jar"
-    ]
+        "f:\\Downloads\\fontawesomefx-8.2.jar",
+        "src/external/mariadb-java-client-2.6.0.jar"
+    ],
+    "java.dependency.syncWithFolderExplorer": true
 }

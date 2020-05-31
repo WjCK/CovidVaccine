@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -53,8 +54,9 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
      * Constructor
      * 
      */
+    @SuppressWarnings("unchecked")
     public GenericDAOImpl() {
-
+        oClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
     /**
@@ -66,7 +68,7 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
         try {
             StringBuilder sqlBuilder = new StringBuilder();
 
-            sqlBuilder.append("INSERT INTO");
+            sqlBuilder.append("INSERT INTO ");
             sqlBuilder.append(getTableName());
             sqlBuilder.append(createInsertInstruction(object));
 
@@ -241,7 +243,8 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
      * @return tableName == patientform in database
      */
     private String getTableName() {
-        return oClass.getAnnotation(Table.class).tableName();
+        String result = oClass.getAnnotation(Table.class).tableName();
+        return result;
     }
 
     /**

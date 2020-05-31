@@ -9,11 +9,9 @@ import java.sql.Statement;
 public class TransactionDB {
 
     Logger logger;
-    private static final String JDBC_DRIVER = System.getProperty("user.dir") + "\\src\\external\\"
-            + "mariadb-java-client-2.6.0";
     Connection connection = null;
     String url = "jdbc:mariadb://localhost:3306/covid";
-    String user = "welder";
+    String user = "root";
     String password = "drug1";
 
     /**
@@ -23,7 +21,6 @@ public class TransactionDB {
      */
     private void connect() throws Exception {
         try {
-            Class.forName(JDBC_DRIVER);
             connection = DriverManager.getConnection(url, user, password);
         } catch (Exception e) {
             logger.log(Level.ERROR, "Fail when opening database connection" + e);
@@ -53,12 +50,12 @@ public class TransactionDB {
      * @throws Exception
      */
     public void openTransaction(boolean reader) throws Exception {
-        if (connection != null) {
+        if (connection == null) {
             connect();
         }
         connection.setReadOnly(reader);
 
-        if (connection != null && connection.isClosed()) {
+        if (connection != null && !connection.isClosed()) {
             connection.setAutoCommit(false);
         } else {
             throw new Exception("Cant open transaction");

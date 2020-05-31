@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 import util.Column;
 import util.Table;
@@ -11,8 +11,6 @@ import util.Table;
 @Table(tableName = "patientform")
 public class Patient {
 
-    @Column(columnName = "id")
-    private int id;
     @Column(columnName = "PatientName")
     private String patientName;
     @Column(columnName = "Gender")
@@ -23,14 +21,6 @@ public class Patient {
     private double weight;
     @Column(columnName = "VaccineDate")
     private Date vaccineDate;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getPatientName() {
         return patientName;
