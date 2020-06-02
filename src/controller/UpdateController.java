@@ -1,55 +1,65 @@
 package controller;
 
 import java.net.URL;
+import java.sql.Date;
 import java.util.ResourceBundle;
 
-import com.jfoenix.controls.JFXTreeTableView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.Patient;
+import service.PatientService;
+import service.PatientServiceImpl;
+import util.CustomException;
 
 public class UpdateController implements Initializable {
 
     @FXML
-    private JFXTreeTableView<?> tableView;
+    private TableView<Patient> tableView;
+
+    @FXML
+    private TableColumn<Patient, Integer> clID;
+
+    @FXML
+    private TableColumn<Patient, String> clPatientName;
+
+    @FXML
+    private TableColumn<Patient, String> clGender;
+
+    @FXML
+    private TableColumn<Patient, Integer> clAge;
+
+    @FXML
+    private TableColumn<Patient, Double> clWeight;
+
+    @FXML
+    private TableColumn<Patient, Date> clVaccineDate;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        configColumn();
-    }
-
-    /**
-     * config column in table view
-     */
-    public void configColumn() {
-        TreeTableColumn idColumn = new TreeTableColumn<>("id");
-        TreeTableColumn patientNameColumn = new TreeTableColumn<>("Patient Name");
-        TreeTableColumn genderColumn = new TreeTableColumn<>("Gender");
-        TreeTableColumn ageColumn = new TreeTableColumn<>("Age");
-        TreeTableColumn weightColumn = new TreeTableColumn<>("Weight");
-        TreeTableColumn vaccineColumn = new TreeTableColumn<>("Vaccine Date");
-
-        tableView.getColumns().addAll(idColumn, patientNameColumn, genderColumn, ageColumn, weightColumn,
-                vaccineColumn);
-
-        // tableView.setStyle("-fx-background-color: #3A3A3D");
-
-        idColumn.setPrefWidth(50);
-        patientNameColumn.setPrefWidth(178);
-        genderColumn.setPrefWidth(100);
-        ageColumn.setPrefWidth(100);
-        weightColumn.setPrefWidth(100);
-        vaccineColumn.setPrefWidth(160);
-
-        idColumn.setResizable(false);
-        patientNameColumn.setResizable(false);
-        genderColumn.setResizable(false);
-        ageColumn.setResizable(false);
-        weightColumn.setResizable(false);
-        vaccineColumn.setResizable(false);
-
-        // idColumn.setStyle("-fx-background-color: #3A3A3D");
+        PatientService patientService = new PatientServiceImpl();
+        ObservableList<Patient> lista = FXCollections.observableArrayList();
+        try {
+            lista.addAll(patientService.list());
+            if (!lista.isEmpty()) {
+                // System.out.println(lista.get(0).getId());
+                tableView.setItems(lista);
+                clID.setCellValueFactory(new PropertyValueFactory<>("id"));
+                clPatientName.setCellValueFactory(new PropertyValueFactory<>("patientName"));
+                clAge.setCellValueFactory(new PropertyValueFactory<>("age"));
+                clGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+                clWeight.setCellValueFactory(new PropertyValueFactory<>("weight"));
+                clVaccineDate.setCellValueFactory(new PropertyValueFactory<>("vaccineDate"));
+                System.out.println(clAge);
+            }
+        } catch (CustomException e) {
+            e.printStackTrace();
+        }
     }
 
 }

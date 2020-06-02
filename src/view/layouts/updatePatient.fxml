@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
@@ -9,8 +10,20 @@
    <children>
       <Pane layoutX="265.0" layoutY="213.0" prefHeight="626.0" prefWidth="730.0" style="-fx-background-color: #252529;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXTreeTableView fx:id="tableView" layoutX="20.0" layoutY="320.0" prefHeight="284.0" prefWidth="690.0" stylesheets="@../../resources/css/style.css" />
             <Label layoutX="304.0" layoutY="62.0" text="Search  appointment" textFill="WHITE" />
+            <TableView fx:id="tableView" layoutX="11.0" layoutY="240.0" prefHeight="363.0" prefWidth="704.0">
+              <columns>
+                <TableColumn fx:id="clID" prefWidth="50.0" text="ID" />
+                <TableColumn fx:id="clPatientName" prefWidth="66.0" text="Patient Name" />
+                  <TableColumn fx:id="clGender" prefWidth="123.0" text="Gender" />
+                  <TableColumn fx:id="clAge" prefWidth="63.0" text="Age" />
+                  <TableColumn fx:id="clWeight" minWidth="0.0" prefWidth="169.0" text="Weight" />
+                  <TableColumn fx:id="clVaccineDate" minWidth="0.0" prefWidth="237.0" text="Vaccine Date" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
          </children></Pane>
    </children>
 </AnchorPane>

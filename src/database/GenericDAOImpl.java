@@ -142,7 +142,7 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
         try {
             StringBuilder sqlBuilder = new StringBuilder();
 
-            sqlBuilder.append("UPDATE");
+            sqlBuilder.append("UPDATE ");
             sqlBuilder.append(getTableName());
             sqlBuilder.append(" SET ");
             sqlBuilder.append(createUpdateInstruction(object));
@@ -175,7 +175,7 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
         try {
             StringBuilder sqlBuilder = new StringBuilder();
 
-            sqlBuilder.append("DELETE FROM");
+            sqlBuilder.append("DELETE FROM ");
             sqlBuilder.append(getTableName());
             sqlBuilder.append("WHERE ID = ");
             sqlBuilder.append(id);
@@ -209,7 +209,7 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
         try {
             StringBuilder sqlBuilder = new StringBuilder();
 
-            sqlBuilder.append("SELECT * FROM");
+            sqlBuilder.append("SELECT * FROM ");
             sqlBuilder.append(getTableName());
             sqlBuilder.append(" ORDER BY 1 ");
 
@@ -234,6 +234,7 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
                 logger.log(Level.ERROR, e);
             }
         }
+        System.out.println(list);
         return list;
     }
 
@@ -355,6 +356,7 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
                     Class<?> boxed = mapPrimitiveClass(type);
                     value = boxed.cast(value);
                 }
+                field.set(object, value);
             }
         } catch (InstantiationException | IllegalAccessException | SQLException e) {
             e.printStackTrace();

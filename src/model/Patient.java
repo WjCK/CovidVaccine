@@ -11,12 +11,14 @@ import util.Table;
 @Table(tableName = "patientform")
 public class Patient {
 
+    @Column(columnName = "id")
+    private Integer id;
     @Column(columnName = "PatientName")
     private String patientName;
     @Column(columnName = "Gender")
     private String gender;
     @Column(columnName = "Age")
-    private int age;
+    private Integer age;
     @Column(columnName = "Weight")
     private double weight;
     @Column(columnName = "VaccineDate")
@@ -60,6 +62,14 @@ public class Patient {
 
     public void setVaccineDate(Date vaccineDate) {
         this.vaccineDate = vaccineDate;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 }
