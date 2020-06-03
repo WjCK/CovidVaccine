@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="626.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateController">
+<AnchorPane fx:id="updateAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="626.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateController">
    <children>
       <Pane layoutX="265.0" layoutY="213.0" prefHeight="626.0" prefWidth="730.0" style="-fx-background-color: #252529;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label layoutX="304.0" layoutY="62.0" text="Search  appointment" textFill="WHITE" />
-            <TableView fx:id="tableView" layoutX="11.0" layoutY="240.0" prefHeight="363.0" prefWidth="704.0">
+            <TableView fx:id="tableView" layoutX="13.0" layoutY="142.0" prefHeight="363.0" prefWidth="704.0" stylesheets="@../../resources/css/style.css">
               <columns>
                 <TableColumn fx:id="clID" prefWidth="50.0" text="ID" />
                 <TableColumn fx:id="clPatientName" prefWidth="66.0" text="Patient Name" />
@@ -24,6 +26,11 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
+            <JFXButton id="buttonSave" fx:id="btnNext" layoutX="339.0" layoutY="545.0" stylesheets="@../../resources/css/style.css" text="Next">
+               <effect>
+                  <Reflection />
+               </effect>
+            </JFXButton>
          </children></Pane>
    </children>
 </AnchorPane>
