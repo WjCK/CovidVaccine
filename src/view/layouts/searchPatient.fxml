@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -13,9 +14,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="626.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChangeController">
    <children>
-      <Pane fx:id="changePane" layoutX="200.0" layoutY="100.0" prefHeight="626.0" prefWidth="730.0" style="-fx-background-color: #252529;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane fx:id="changePane" prefHeight="626.0" prefWidth="730.0" style="-fx-background-color: #252529;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <GridPane layoutX="229.0" layoutY="93.0" prefHeight="407.0" prefWidth="273.0">
+            <GridPane layoutX="229.0" layoutY="65.0" prefHeight="407.0" prefWidth="273.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -54,10 +55,17 @@
                      </effect></JFXDatePicker>
                   <JFXComboBox id="textField" fx:id="cmbGender" prefHeight="28.0" prefWidth="292.0" stylesheets="@../../resources/css/style.css" GridPane.rowIndex="2">
                      <effect>
-                        <ColorAdjust brightness="1.0" />
+                        <Reflection>
+                           <input>
+                              <ColorAdjust brightness="1.0" />
+                           </input>
+                        </Reflection>
                      </effect></JFXComboBox>
                </children>
             </GridPane>
+            <JFXButton id="buttonSave" fx:id="btnCancel" layoutX="193.0" layoutY="541.0" stylesheets="@../../resources/css/style.css" text="Cancel" />
+            <JFXButton id="buttonSave" fx:id="btnUpdate" layoutX="331.0" layoutY="541.0" stylesheets="@../../resources/css/style.css" text="Update" />
+            <JFXButton id="buttonSave" fx:id="btnDelete" layoutX="464.0" layoutY="541.0" stylesheets="@../../resources/css/style.css" text="Delete" />
          </children>
          </Pane>
    </children>

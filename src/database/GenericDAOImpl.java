@@ -177,7 +177,7 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
 
             sqlBuilder.append("DELETE FROM ");
             sqlBuilder.append(getTableName());
-            sqlBuilder.append("WHERE ID = ");
+            sqlBuilder.append(" WHERE ID = ");
             sqlBuilder.append(id);
 
             System.out.println(sqlBuilder.toString());

@@ -67,7 +67,7 @@
 }
 
 .table-row-cell:selected {
-    -fx-background-color: linear-gradient(#6b3a63 0%, #77358b 100%);
+    -fx-background-color: linear-gradient(to right,#4e3cb6 0%, #802d97 100%);
     -fx-background-insets: 0;
     -fx-background-radius: 1;
 }
@@ -86,4 +86,15 @@
 .table-view > .virtual-flow > .scroll-bar > .increment-button,
 .table-view > .virtual-flow > .scroll-bar > .decrement-button {
     -fx-opacity: 0;
+}
+
+.combo-box-popup .list-view .jfx-list-cell .label,
+.combo-box-popup .list-view .jfx-list-cell:filled:hover .label {
+    -fx-text-fill: rgb(255, 255, 255);
+}
+
+.combo-box-popup .list-view .jfx-list-cell .custom-jfx-list-view-icon,
+.combo-box-popup .list-view .jfx-list-cell:filled:hover .custom-jfx-list-view-icon,
+.combo-box-popup .list-view .jfx-list-cell:selected .custom-jfx-list-view-icon {
+    -fx-fill: #5264AE;
 }

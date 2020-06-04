@@ -60,6 +60,7 @@ public class CreateController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cmbGender.getItems().add("Male");
         cmbGender.getItems().add("Female");
+        cmbGender.setValue("value");
 
         btnSave.setOnAction((event -> {
             try {
