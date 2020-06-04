@@ -234,7 +234,6 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
                 logger.log(Level.ERROR, e);
             }
         }
-        System.out.println(list);
         return list;
     }
 
@@ -293,7 +292,6 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
             sql.append(values);
         } catch (Exception e) {
             logger.log(Level.ERROR, "error: " + e);
-            e.printStackTrace();
         }
 
         return sql.toString();
@@ -326,7 +324,7 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, "error: " + e);
         }
         return sqlBuilder.toString();
     }
@@ -359,7 +357,7 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
                 field.set(object, value);
             }
         } catch (InstantiationException | IllegalAccessException | SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e);
         }
         return object;
     }
@@ -378,7 +376,7 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
             field.setAccessible(true);
             sqlBuilder.append(field.get(object));
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e);
         }
 
         return sqlBuilder.toString();

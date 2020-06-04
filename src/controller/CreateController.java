@@ -23,6 +23,8 @@ import javafx.scene.layout.Pane;
 import model.Patient;
 import service.PatientService;
 import service.PatientServiceImpl;
+import util.CustomException;
+import util.DatabaseException;
 import util.FormException;
 
 public class CreateController implements Initializable {
@@ -61,18 +63,18 @@ public class CreateController implements Initializable {
         cmbGender.getItems().add("Male");
         cmbGender.getItems().add("Female");
         cmbGender.setValue("value");
-
+        try {
+            validateForm();
+        } catch (FormException e1) {
+            e1.printStackTrace();
+        }
         btnSave.setOnAction((event -> {
             try {
-                validateForm();
-                try {
-                    PatientService patientService = new PatientServiceImpl();
-                    patientService.create(loadPatient());
-                } catch (Exception e) {
-                    logger.log(Level.ERROR, e);
-                }
-            } catch (Exception e) {
-                logger.log(Level.ERROR, e);
+                PatientService patientService = new PatientServiceImpl();
+                validateBeforeSave();
+                patientService.create(loadPatient());
+            } catch (FormException | CustomException | DatabaseException e) {
+                e.printStackTrace();
             }
         }));
 
@@ -90,12 +92,15 @@ public class CreateController implements Initializable {
 
     /**
      * Form validation
+     * 
+     * @throws FormException
      */
-    private void validateForm() {
+    private void validateForm() throws FormException {
         txtPatientName.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.length() == 0) {
-                if (!newValue.matches("[A-Z a-zÀ-Ÿà-ÿ]+") || oldValue.length() != 0)
+                if (!newValue.matches("[A-Z a-zÀ-Ÿà-ÿ]+") || oldValue.length() == 0) {
                     txtPatientName.setText("");
+                }
             } else if (!newValue.matches("[A-Z a-zÀ-Ÿà-ÿ]+") || (newValue.length() > 50)) {
                 txtPatientName.setText(oldValue);
             }
@@ -117,21 +122,6 @@ public class CreateController implements Initializable {
                 txtWeight.setText(oldValue);
         });
 
-        if (dateAppointment.getValue() == null) {
-            try {
-                throw new FormException("Error", "Try inserting a date, please");
-            } catch (FormException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if (cmbGender.getValue().isEmpty()) {
-            try {
-                throw new FormException("Error", "Select a gender please");
-            } catch (FormException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     private Patient loadPatient() {
@@ -145,10 +135,36 @@ public class CreateController implements Initializable {
             Date date = sdf.parse(dateAppointment.getEditor().getText());
             patient.setVaccineDate(new java.sql.Date(date.getTime()));
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e);
         }
 
         return patient;
+    }
+
+    private void validateBeforeSave() throws FormException {
+        if (txtPatientName.getText().isEmpty()) {
+            throw new FormException("Inform the patient name!", "Patient Name is empty");
+        }
+
+        if (cmbGender.getEditor().getText().isEmpty()) {
+            throw new FormException("Select a gender!", "Combo box is empty");
+        }
+
+        if (txtAge.getText().isEmpty()) {
+            throw new FormException("Input patient age!", "Age field is empty");
+        }
+
+        if (txtWeight.getText().isEmpty()) {
+            throw new FormException("Enter a Weight", "Weight field is empty");
+        }
+
+        if (dateAppointment.getEditor().getText().isEmpty()) {
+            throw new FormException("Input vaccine date", "Vaccine Date is empty");
+        }
+
+        if (!dateAppointment.getEditor().getText().matches("[0-3][0-9]/[0-1][0-9]/[0-9]+")) {
+            throw new FormException("try: 00/00/0000", "The date format is invalid");
+        }
     }
 
 }

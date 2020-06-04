@@ -3,7 +3,6 @@ package controller;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.URL;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
@@ -20,7 +19,6 @@ import javafx.scene.Scene;
 import model.Patient;
 import service.PatientService;
 import service.PatientServiceImpl;
-import util.FormException;
 
 public class ChangeController implements Initializable {
 
@@ -53,8 +51,6 @@ public class ChangeController implements Initializable {
     @FXML
     private JFXButton btnDelete;
 
-    private Patient selectedPatient;
-
     PatientService patientService = new PatientServiceImpl();
 
     @Override
@@ -82,11 +78,13 @@ public class ChangeController implements Initializable {
             try {
                 patientService.delete(loadPatient().getId());
             } catch (Exception e) {
+                logger.log(Level.ERROR, e);
             }
         });
     }
 
     public void initData(Patient patient) {
+        Patient selectedPatient;
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         selectedPatient = patient;
         txtID.setText(Integer.toString(selectedPatient.getId()));
@@ -115,7 +113,7 @@ public class ChangeController implements Initializable {
             java.util.Date date = sdf.parse(txtVaccineDate.getEditor().getText());
             patient.setVaccineDate(new java.sql.Date(date.getTime()));
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e);
         }
 
         return patient;

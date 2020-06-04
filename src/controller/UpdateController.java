@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -55,24 +56,18 @@ public class UpdateController implements Initializable {
     @FXML
     private JFXButton btnNext;
 
+    @FXML
+    private JFXTextField txtSearch;
+
+    @FXML
+    private JFXButton btnSearch;
+
+    PatientService patientService = new PatientServiceImpl();
+    ObservableList<Patient> lista = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        PatientService patientService = new PatientServiceImpl();
-        ObservableList<Patient> lista = FXCollections.observableArrayList();
-        try {
-            lista.addAll(patientService.list());
-            if (!lista.isEmpty()) {
-                tableView.setItems(lista);
-                clID.setCellValueFactory(new PropertyValueFactory<>("id"));
-                clPatientName.setCellValueFactory(new PropertyValueFactory<>("patientName"));
-                clAge.setCellValueFactory(new PropertyValueFactory<>("age"));
-                clGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
-                clWeight.setCellValueFactory(new PropertyValueFactory<>("weight"));
-                clVaccineDate.setCellValueFactory(new PropertyValueFactory<>("vaccineDate"));
-            }
-        } catch (CustomException e) {
-            logger.log(Level.ERROR, e);
-        }
+        loadTable();
 
         btnNext.setOnAction(event -> {
             FXMLLoader loader = new FXMLLoader();
@@ -87,6 +82,54 @@ public class UpdateController implements Initializable {
             }
         });
 
+        btnSearch.setOnAction(event -> {
+            try {
+                if (loadPatient().getId() != null && loadPatient().getId() <= patientService.list().size()
+                        && loadPatient().getId() != 0) {
+                    lista.clear();
+                    lista.add(patientService.retrieve(loadPatient().getId()));
+                    if (lista.isEmpty()) {
+                        tableView.setItems(lista);
+                        clID.setCellValueFactory(new PropertyValueFactory<>("id"));
+                        clPatientName.setCellValueFactory(new PropertyValueFactory<>("patientName"));
+                        clAge.setCellValueFactory(new PropertyValueFactory<>("age"));
+                        clGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+                        clWeight.setCellValueFactory(new PropertyValueFactory<>("weight"));
+                        clVaccineDate.setCellValueFactory(new PropertyValueFactory<>("vaccineDate"));
+                    }
+                } else
+                    loadTable();
+            } catch (CustomException e) {
+                logger.log(Level.ERROR, "error: " + e);
+            }
+        });
+
+    }
+
+    private void loadTable() {
+        lista.clear();
+        try {
+            lista.addAll(patientService.list());
+            if (!lista.isEmpty()) {
+                tableView.setItems(lista);
+                clID.setCellValueFactory(new PropertyValueFactory<>("id"));
+                clPatientName.setCellValueFactory(new PropertyValueFactory<>("patientName"));
+                clAge.setCellValueFactory(new PropertyValueFactory<>("age"));
+                clGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+                clWeight.setCellValueFactory(new PropertyValueFactory<>("weight"));
+                clVaccineDate.setCellValueFactory(new PropertyValueFactory<>("vaccineDate"));
+            }
+        } catch (CustomException e) {
+            logger.log(Level.ERROR, e);
+        }
+    }
+
+    private Patient loadPatient() {
+        Patient patient = new Patient();
+        if (!txtSearch.getText().isEmpty()) {
+            patient.setId(Integer.parseInt(txtSearch.getText()));
+        }
+        return patient;
     }
 
 }

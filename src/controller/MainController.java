@@ -26,12 +26,6 @@ public class MainController implements Initializable {
     private JFXButton btnUpdatePatient;
 
     @FXML
-    private JFXButton btnDeletePatient;
-
-    @FXML
-    private JFXButton btnCheckPatient;
-
-    @FXML
     private AnchorPane anchorPane;
 
     @FXML
