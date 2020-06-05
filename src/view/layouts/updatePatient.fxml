@@ -15,9 +15,9 @@
    <children>
       <Pane layoutX="265.0" layoutY="213.0" prefHeight="626.0" prefWidth="730.0" style="-fx-background-color: #252529;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="268.0" layoutY="29.0" text="Search  appointment" textFill="WHITE">
+            <Label layoutX="250.0" layoutY="30.0" prefHeight="42.0" prefWidth="299.0" text="Search  appointment" textFill="WHITE">
                <font>
-                  <Font name="Rockwell" size="26.0" />
+                  <Font name="Rockwell" size="29.0" />
                </font></Label>
             <TableView fx:id="tableView" layoutX="14.0" layoutY="168.0" prefHeight="363.0" prefWidth="704.0" stylesheets="@../../resources/css/style.css">
               <columns>
@@ -32,17 +32,17 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <JFXButton id="buttonSave" fx:id="btnNext" layoutX="338.0" layoutY="562.0" stylesheets="@../../resources/css/style.css" text="Next">
+            <JFXButton id="button" fx:id="btnNext" layoutX="338.0" layoutY="562.0" prefHeight="42.0" prefWidth="61.0" stylesheets="@../../resources/css/style.css" text="Next">
                <effect>
                   <Reflection />
                </effect>
             </JFXButton>
-            <JFXTextField id="textField" fx:id="txtSearch" layoutX="259.0" layoutY="98.0" prefHeight="32.0" prefWidth="192.0" promptText="Search" stylesheets="@../../resources/css/style.css">
+            <JFXTextField id="textField" fx:id="txtSearch" layoutX="255.0" layoutY="108.0" prefHeight="32.0" prefWidth="192.0" promptText="Search" stylesheets="@../../resources/css/style.css">
                <font>
-                  <Font name="Bookman Old Style" size="17.0" />
+                  <Font name="Bookman Old Style" size="14.0" />
                </font>
             </JFXTextField>
-            <JFXButton id="buttonSave" fx:id="btnSearch" layoutX="471.0" layoutY="98.0" stylesheets="@../../resources/css/style.css" text="Search">
+            <JFXButton id="button" fx:id="btnSearch" layoutX="471.0" layoutY="98.0" prefHeight="42.0" prefWidth="82.0" stylesheets="@../../resources/css/style.css" text="Search">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="SEARCH" />
                </graphic>

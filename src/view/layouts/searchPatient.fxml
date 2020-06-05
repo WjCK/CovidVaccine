@@ -29,7 +29,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXTextField id="textField" fx:id="txtID" prefWidth="323.0" promptText="id" stylesheets="@../../resources/css/style.css">
+                  <JFXTextField id="textField" fx:id="txtID" editable="false" prefWidth="323.0" promptText="id" stylesheets="@../../resources/css/style.css">
                      <effect>
                         <Reflection />
                      </effect></JFXTextField>
@@ -63,9 +63,9 @@
                      </effect></JFXComboBox>
                </children>
             </GridPane>
-            <JFXButton id="buttonSave" fx:id="btnCancel" layoutX="193.0" layoutY="541.0" stylesheets="@../../resources/css/style.css" text="Cancel" />
-            <JFXButton id="buttonSave" fx:id="btnUpdate" layoutX="331.0" layoutY="541.0" stylesheets="@../../resources/css/style.css" text="Update" />
-            <JFXButton id="buttonSave" fx:id="btnDelete" layoutX="464.0" layoutY="541.0" stylesheets="@../../resources/css/style.css" text="Delete" />
+            <JFXButton id="button" fx:id="btnCancel" layoutX="191.0" layoutY="541.0" prefHeight="42.0" prefWidth="62.0" stylesheets="@../../resources/css/style.css" text="Cancel" />
+            <JFXButton id="button" fx:id="btnUpdate" layoutX="331.0" layoutY="541.0" prefHeight="42.0" prefWidth="68.0" stylesheets="@../../resources/css/style.css" text="Update" />
+            <JFXButton id="button" fx:id="btnDelete" layoutX="464.0" layoutY="541.0" prefHeight="42.0" prefWidth="62.0" stylesheets="@../../resources/css/style.css" text="Delete" />
          </children>
          </Pane>
    </children>

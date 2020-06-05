@@ -19,21 +19,18 @@
     -fx-prompt-text-fill: #ffffffff;
 }
 
-#buttonSave{
+#button{
     -fx-background-color: #22222a;
     -fx-text-fill: #ffffff;
+    -fx-hgap: 200px;
+    -fx-background-radius: 100px;
+    -fx-border-radius: 100px;
+    -fx-border-width: 2px;
+    -fx-border-color: #3b3bcc;
+    -fx-effect: dropshadow(three-pass-box, #3b3bcc, 10, 0, 0, 0);
 }
 
-#buttonCancel{
-    -fx-background-color: #22222a;
-    -fx-text-fill: #ffffff;
-}
-
-#buttonSave:hover{
-    -fx-background-color: #2a2a35;
-}
-
-#buttonCancel:hover{
+#button:hover{
     -fx-background-color: #2a2a35;
 }
 
@@ -99,7 +96,7 @@
     -fx-fill: #5264AE;
 }
 
-.payload {
+#radius {
     -fx-hgap: 20px;
     -fx-padding: 40px;
 
