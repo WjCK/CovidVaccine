@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.URL;
@@ -15,7 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import model.Patient;
 import service.PatientService;
 import service.PatientServiceImpl;
@@ -24,6 +25,9 @@ import util.FormException;
 public class ChangeController implements Initializable {
 
     Logger logger;
+
+    @FXML
+    private AnchorPane searchAnchorPane;
 
     @FXML
     private JFXTextField txtID;
@@ -55,18 +59,22 @@ public class ChangeController implements Initializable {
     PatientService patientService = new PatientServiceImpl();
 
     @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        validateForm();
+
+        /* load previous screen */
         btnCancel.setOnAction((event -> {
-            Parent screen;
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/layouts/updatePatient.fxml"));
             try {
-                screen = FXMLLoader.load(getClass().getResource("/view/layouts/main.fxml"));
-                Scene scene = btnCancel.getScene();
-                scene.setRoot(screen);
-            } catch (Exception e) {
+                Parent parent = loader.load();
+                searchAnchorPane.getChildren().setAll(parent);
+            } catch (IOException e) {
                 logger.log(Level.ERROR, e);
             }
         }));
 
+        /* update appointment in database */
         btnUpdate.setOnAction((event -> {
             try {
                 validateBeforeUpdate();
@@ -76,6 +84,7 @@ public class ChangeController implements Initializable {
             }
         }));
 
+        /* delete appointment in database */
         btnDelete.setOnAction(event -> {
             try {
                 patientService.delete(loadPatient().getId());
@@ -85,6 +94,45 @@ public class ChangeController implements Initializable {
         });
     }
 
+    /**
+     * Form validation
+     * 
+     * @throws FormException
+     */
+    private void validateForm() {
+        txtPatientName.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() == 0) {
+                if (!newValue.matches("[A-Z a-zÀ-Ÿà-ÿ]+") || oldValue.length() == 0) {
+                    txtPatientName.setText("");
+                }
+            } else if (!newValue.matches("[A-Z a-zÀ-Ÿà-ÿ]+") || (newValue.length() > 50)) {
+                txtPatientName.setText(oldValue);
+            }
+        });
+
+        txtAge.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() == 0) {
+                if (!newValue.matches("\\d+") || oldValue.length() == 0)
+                    txtAge.setText("");
+            } else if (!newValue.matches("\\d+") || newValue.length() < 0)
+                txtAge.setText(oldValue);
+        });
+
+        txtWeight.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() == 0) {
+                if (!newValue.matches("[0-9.]+") || oldValue.length() == 0)
+                    txtWeight.setText("");
+            } else if (!newValue.matches("[0-9.]+") || newValue.length() > 4)
+                txtWeight.setText(oldValue);
+        });
+
+    }
+
+    /**
+     * set patient info in text field, combo box and date picker
+     * 
+     * @param patient
+     */
     public void initData(Patient patient) {
         Patient selectedPatient;
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -103,6 +151,11 @@ public class ChangeController implements Initializable {
         txtVaccineDate.getEditor().setText(sdf.format(selectedPatient.getVaccineDate()));
     }
 
+    /**
+     * Load patient to parse info to database
+     * 
+     * @return
+     */
     private Patient loadPatient() {
         Patient patient = new Patient();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -121,6 +174,11 @@ public class ChangeController implements Initializable {
         return patient;
     }
 
+    /**
+     * Validate form before update in database
+     * 
+     * @throws FormException
+     */
     private void validateBeforeUpdate() throws FormException {
         if (txtPatientName.getText().isEmpty()) {
             throw new FormException("Inform the patient name!", "Patient Name is empty");

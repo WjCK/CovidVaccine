@@ -60,22 +60,25 @@ public class CreateController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setButtonFocus();
         cmbGender.getItems().add("Male");
         cmbGender.getItems().add("Female");
-        cmbGender.setValue("value");
 
         validateForm();
 
+        /* save appointment in database */
         btnSave.setOnAction(event -> {
             try {
                 PatientService patientService = new PatientServiceImpl();
                 validateBeforeSave();
                 patientService.create(loadPatient());
+                setButtonFocus();
             } catch (FormException | CustomException | DatabaseException e) {
                 e.printStackTrace();
             }
         });
 
+        /* load previus screen */
         btnCancel.setOnAction(event -> {
             Parent screen;
             try {
@@ -122,6 +125,11 @@ public class CreateController implements Initializable {
 
     }
 
+    /**
+     * Load patient info
+     * 
+     * @return
+     */
     private Patient loadPatient() {
         Patient patient = new Patient();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -139,6 +147,11 @@ public class CreateController implements Initializable {
         return patient;
     }
 
+    /**
+     * validate form before save in database
+     * 
+     * @throws FormException
+     */
     private void validateBeforeSave() throws FormException {
         if (txtPatientName.getText().isEmpty()) {
             throw new FormException("Inform the patient name!", "Patient Name is empty");
@@ -178,4 +191,8 @@ public class CreateController implements Initializable {
         }
     }
 
+    private void setButtonFocus() {
+        btnCancel.setFocusTraversable(false);
+        btnSave.setFocusTraversable(false);
+    }
 }

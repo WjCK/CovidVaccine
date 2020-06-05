@@ -155,7 +155,7 @@
                   </Label>
                </children>
             </Pane>
-            <JFXButton id="menuButton" fx:id="btnRegisterPatient1" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#loadCreatePatient" prefHeight="65.0" prefWidth="242.0" stylesheets="@../../resources/css/style.css" text="Home" textFill="WHITE">
+            <JFXButton id="menuButton" fx:id="btnHome" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="65.0" prefWidth="242.0" stylesheets="@../../resources/css/style.css" text="Home" textFill="WHITE">
                <padding>
                   <Insets left="50.0" />
                </padding>

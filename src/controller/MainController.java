@@ -32,6 +32,9 @@ public class MainController implements Initializable {
     private JFXButton btnLearnMore;
 
     @FXML
+    private JFXButton btnHome;
+
+    @FXML
     private AnchorPane anchorPane;
 
     @FXML
@@ -43,6 +46,7 @@ public class MainController implements Initializable {
         btnUpdatePatient.setFocusTraversable(false);
         btnAbout.setFocusTraversable(false);
         btnLearnMore.setFocusTraversable(false);
+        btnHome.setFocusTraversable(false);
     }
 
     @FXML

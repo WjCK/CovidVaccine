@@ -25,6 +25,7 @@ import model.Patient;
 import service.PatientService;
 import service.PatientServiceImpl;
 import util.CustomException;
+import util.FormException;
 
 public class UpdateController implements Initializable {
 
@@ -71,35 +72,45 @@ public class UpdateController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        btnBack.setFocusTraversable(false);
-        btnSearch.setFocusTraversable(false);
-        btnNext.setFocusTraversable(false);
+        setButtonFocus();
         loadTable();
 
+        /* show previous screen */
         btnBack.setOnAction(event -> {
             Parent screen;
             try {
                 screen = FXMLLoader.load(getClass().getResource("/view/layouts/main.fxml"));
                 Scene scene = btnBack.getScene();
                 scene.setRoot(screen);
+                setButtonFocus();
             } catch (Exception e) {
                 logger.log(Level.ERROR, e);
             }
         });
 
+        /* show changePatient screen with patient infos */
         btnNext.setOnAction(event -> {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/view/layouts/searchPatient.fxml"));
-            try {
-                Parent parent = loader.load();
-                ChangeController changeController = loader.getController();
-                changeController.initData(tableView.getSelectionModel().getSelectedItem());
-                updateAnchorPane.getChildren().setAll(parent);
-            } catch (IOException e) {
-                logger.log(Level.ERROR, e);
+            if (tableView.getSelectionModel().getSelectedItem() == null) {
+                try {
+                    throw new FormException("Error", "Select a column please");
+                } catch (FormException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/view/layouts/searchPatient.fxml"));
+                try {
+                    Parent parent = loader.load();
+                    ChangeController changeController = loader.getController();
+                    changeController.initData(tableView.getSelectionModel().getSelectedItem());
+                    updateAnchorPane.getChildren().setAll(parent);
+                } catch (IOException e) {
+                    logger.log(Level.ERROR, e);
+                }
             }
         });
 
+        /* search patient in database */
         btnSearch.setOnAction(event -> {
             try {
                 if (loadPatient().getId() != null && loadPatient().getId() <= patientService.list().size()
@@ -117,6 +128,7 @@ public class UpdateController implements Initializable {
                     }
                 } else
                     loadTable();
+                setButtonFocus();
             } catch (CustomException e) {
                 logger.log(Level.ERROR, "error: " + e);
             }
@@ -124,6 +136,9 @@ public class UpdateController implements Initializable {
 
     }
 
+    /**
+     * Load tableview
+     */
     private void loadTable() {
         lista.clear();
         try {
@@ -142,6 +157,11 @@ public class UpdateController implements Initializable {
         }
     }
 
+    /**
+     * Load patient and set ID to search in database
+     * 
+     * @return patient
+     */
     private Patient loadPatient() {
         Patient patient = new Patient();
         if (!txtSearch.getText().isEmpty()) {
@@ -150,4 +170,9 @@ public class UpdateController implements Initializable {
         return patient;
     }
 
+    private void setButtonFocus() {
+        btnBack.setFocusTraversable(false);
+        btnSearch.setFocusTraversable(false);
+        btnNext.setFocusTraversable(false);
+    }
 }
