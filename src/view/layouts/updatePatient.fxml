@@ -7,8 +7,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Reflection?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -17,11 +15,6 @@
    <children>
       <Pane layoutX="265.0" layoutY="213.0" prefHeight="626.0" prefWidth="730.0" style="-fx-background-color: #252529;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="738.0" fitWidth="1005.0" opacity="0.15" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../resources/icons/a.jpg" />
-               </image>
-            </ImageView>
             <Label layoutX="250.0" layoutY="30.0" prefHeight="42.0" prefWidth="299.0" text="Search  appointment" textFill="WHITE">
                <font>
                   <Font name="Rockwell" size="29.0" />
@@ -39,10 +32,13 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <JFXButton id="button" fx:id="btnNext" layoutX="338.0" layoutY="562.0" prefHeight="42.0" prefWidth="61.0" stylesheets="@../../resources/css/style.css" text="Next">
+            <JFXButton id="button" fx:id="btnNext" layoutX="430.0" layoutY="561.0" prefHeight="42.0" prefWidth="82.0" stylesheets="@../../resources/css/style.css" text="Next">
                <effect>
                   <Reflection />
                </effect>
+               <graphic>
+                  <FontAwesomeIcon fill="WHITE" glyphName="ARROW_RIGHT" size="14" />
+               </graphic>
             </JFXButton>
             <JFXTextField id="textField" fx:id="txtSearch" layoutX="255.0" layoutY="108.0" prefHeight="32.0" prefWidth="192.0" promptText="Search" stylesheets="@../../resources/css/style.css">
                <font>
@@ -52,6 +48,14 @@
             <JFXButton id="button" fx:id="btnSearch" layoutX="471.0" layoutY="98.0" prefHeight="42.0" prefWidth="82.0" stylesheets="@../../resources/css/style.css" text="Search">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="SEARCH" />
+               </graphic>
+            </JFXButton>
+            <JFXButton id="button" fx:id="btnNext1" layoutX="230.0" layoutY="561.0" prefHeight="42.0" prefWidth="82.0" stylesheets="@../../resources/css/style.css" text="Back">
+               <effect>
+                  <Reflection />
+               </effect>
+               <graphic>
+                  <FontAwesomeIcon fill="WHITE" glyphName="ARROW_LEFT" size="14" />
                </graphic>
             </JFXButton>
          </children></Pane>

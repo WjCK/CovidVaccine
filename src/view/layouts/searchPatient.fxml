@@ -4,6 +4,8 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
@@ -15,17 +17,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="626.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChangeController">
    <children>
       <Pane fx:id="changePane" prefHeight="626.0" prefWidth="730.0" style="-fx-background-color: #252529;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="738.0" fitWidth="1005.0" opacity="0.15" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../resources/icons/a.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="379.0" fitWidth="870.0" layoutX="-82.0" layoutY="106.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="379.0" fitWidth="870.0" layoutX="-81.0" layoutY="106.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resources/icons/purple.png" />
                </image>
@@ -33,7 +31,7 @@
                   <Blend />
                </effect>
             </ImageView>
-            <GridPane layoutX="229.0" layoutY="65.0" prefHeight="407.0" prefWidth="273.0">
+            <GridPane layoutX="260.0" layoutY="85.0" prefHeight="407.0" prefWidth="273.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -80,9 +78,35 @@
                      </effect></JFXDatePicker>
                </children>
             </GridPane>
-            <JFXButton id="button" fx:id="btnCancel" layoutX="185.0" layoutY="541.0" prefHeight="42.0" prefWidth="68.0" stylesheets="@../../resources/css/style.css" text="Cancel" />
-            <JFXButton id="button" fx:id="btnUpdate" layoutX="331.0" layoutY="541.0" prefHeight="42.0" prefWidth="68.0" stylesheets="@../../resources/css/style.css" text="Update" />
-            <JFXButton id="button" fx:id="btnDelete" layoutX="464.0" layoutY="541.0" prefHeight="42.0" prefWidth="68.0" stylesheets="@../../resources/css/style.css" text="Delete" />
+            <JFXButton id="button" fx:id="btnCancel" layoutX="213.0" layoutY="534.0" prefHeight="42.0" prefWidth="91.0" stylesheets="@../../resources/css/style.css" text="Cancel">
+               <graphic>
+                  <FontAwesomeIcon fill="WHITE" glyphName="ARROW_LEFT" size="14" />
+               </graphic></JFXButton>
+            <JFXButton id="button" fx:id="btnUpdate" layoutX="356.0" layoutY="534.0" prefHeight="42.0" prefWidth="91.0" stylesheets="@../../resources/css/style.css" text="Update">
+               <graphic>
+                  <FontAwesomeIcon fill="WHITE" glyphName="RETWEET" size="14" />
+               </graphic></JFXButton>
+            <JFXButton id="button" fx:id="btnDelete" layoutX="502.0" layoutY="534.0" prefHeight="42.0" prefWidth="91.0" stylesheets="@../../resources/css/style.css" text="Delete">
+               <graphic>
+                  <FontAwesomeIcon fill="WHITE" glyphName="REMOVE" size="14" />
+               </graphic></JFXButton>
+            <ImageView fitHeight="212.0" fitWidth="233.0" layoutX="-20.0" layoutY="408.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/icons/hiclipart.com.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="260.0" layoutY="29.0" text="Change Appointment" textFill="#fffdfd">
+               <font>
+                  <Font name="Rockwell" size="26.0" />
+               </font>
+            </Label>
+            <FontAwesomeIcon fill="WHITE" glyphName="TICKET" layoutX="223.0" layoutY="131.0" size="20" />
+            <FontAwesomeIcon fill="WHITE" glyphName="USER" layoutX="222.0" layoutY="200.0" size="20" text="" />
+            <FontAwesomeIcon fill="WHITE" glyphName="SORT_NUMERIC_ASC" layoutX="219.0" layoutY="338.0" size="20" text="" />
+            <FontAwesomeIcon fill="WHITE" glyphName="VENUS_MARS" layoutX="217.0" layoutY="273.0" size="20" />
+            <FontAwesomeIcon fill="WHITE" glyphName="LONG_ARROW_DOWN" layoutX="235.0" layoutY="406.0" size="20" />
+            <FontAwesomeIcon fill="WHITE" glyphName="LONG_ARROW_UP" layoutX="219.0" layoutY="406.0" size="20" />
+            <FontAwesomeIcon fill="WHITE" glyphName="EDIT" layoutX="216.0" layoutY="473.0" size="20" />
          </children>
          <effect>
             <DropShadow height="111.19" radius="82.8925" width="222.38" />

@@ -4,11 +4,10 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.Reflection?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -20,22 +19,29 @@
    <children>
       <Pane id="test" fx:id="createPane" prefHeight="626.0" prefWidth="730.0" style="-fx-background-color: #252529;">
          <children>
-            <ImageView fitHeight="738.0" fitWidth="1005.0" opacity="0.15" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../resources/icons/a.jpg" />
-               </image>
-            </ImageView>
-            <JFXButton id="button" fx:id="btnSave" layoutX="234.0" layoutY="524.0" prefHeight="42.0" prefWidth="77.0" stylesheets="@../../resources/css/style.css" text="Save" textFill="WHITE">
+            <JFXButton id="button" fx:id="btnSave" layoutX="234.0" layoutY="524.0" prefHeight="42.0" prefWidth="84.0" stylesheets="@../../resources/css/style.css" text="Save" textFill="WHITE">
                <effect>
                   <Reflection />
-               </effect></JFXButton>
-            <JFXButton id="button" fx:id="btnCancel" layoutX="419.0" layoutY="524.0" prefHeight="42.0" prefWidth="77.0" stylesheets="@../../resources/css/style.css" text="Cancel">
-               <effect>
-                  <Reflection />
-               </effect></JFXButton>
-            <Label layoutX="249.0" layoutY="41.0" prefHeight="31.0" prefWidth="253.0" text="Doctor's Appointment" textFill="WHITE">
+               </effect>
+               <graphic>
+                  <FontAwesomeIcon fill="WHITE" glyphName="SAVE" size="14" />
+               </graphic>
                <font>
-                  <Font name="Rockwell" size="25.0" />
+                  <Font size="13.0" />
+               </font></JFXButton>
+            <JFXButton id="button" fx:id="btnCancel" layoutX="419.0" layoutY="524.0" prefHeight="42.0" prefWidth="84.0" stylesheets="@../../resources/css/style.css" text="Cancel">
+               <effect>
+                  <Reflection />
+               </effect>
+               <graphic>
+                  <FontAwesomeIcon fill="WHITE" glyphName="ARROW_LEFT" size="14" />
+               </graphic>
+               <font>
+                  <Font size="13.0" />
+               </font></JFXButton>
+            <Label layoutX="234.0" layoutY="41.0" prefHeight="32.0" prefWidth="284.0" text="Doctor's Appointment" textFill="WHITE">
+               <font>
+                  <Font name="Rockwell" size="26.0" />
                </font>
             </Label>
             <GridPane layoutX="207.0" layoutY="108.0" prefHeight="378.0" prefWidth="338.0">
@@ -95,6 +101,12 @@
                   </JFXDatePicker>
                </children>
             </GridPane>
+            <FontAwesomeIcon fill="WHITE" glyphName="USER" layoutX="172.0" layoutY="157.0" size="20" text="" />
+            <FontAwesomeIcon fill="WHITE" glyphName="VENUS_MARS" layoutX="173.0" layoutY="233.0" size="20" />
+            <FontAwesomeIcon fill="WHITE" glyphName="SORT_NUMERIC_ASC" layoutX="174.0" layoutY="308.0" size="20" />
+            <FontAwesomeIcon fill="WHITE" glyphName="LONG_ARROW_UP" layoutX="175.0" layoutY="385.0" size="20" />
+            <FontAwesomeIcon fill="WHITE" glyphName="LONG_ARROW_DOWN" layoutX="191.0" layoutY="385.0" size="20" />
+            <FontAwesomeIcon fill="WHITE" glyphName="EDIT" layoutX="178.0" layoutY="468.0" size="20" />
          </children></Pane>
    </children>
 </AnchorPane>

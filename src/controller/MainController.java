@@ -26,6 +26,12 @@ public class MainController implements Initializable {
     private JFXButton btnUpdatePatient;
 
     @FXML
+    private JFXButton btnAbout;
+
+    @FXML
+    private JFXButton btnLearnMore;
+
+    @FXML
     private AnchorPane anchorPane;
 
     @FXML
@@ -33,7 +39,10 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        btnRegisterPatient.setFocusTraversable(false);
+        btnUpdatePatient.setFocusTraversable(false);
+        btnAbout.setFocusTraversable(false);
+        btnLearnMore.setFocusTraversable(false);
     }
 
     @FXML
@@ -48,32 +57,10 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    void loadDeletePatient(ActionEvent event) {
-        Pane pane;
-        try {
-            pane = FXMLLoader.load(getClass().getResource("/view/layouts/deletePatient.fxml"));
-            mainPane.getChildren().setAll(pane);
-        } catch (Exception e) {
-            logger.log(Level.ERROR, e);
-        }
-    }
-
-    @FXML
     void loadUpdatePatient(ActionEvent event) {
         Pane pane;
         try {
             pane = FXMLLoader.load(getClass().getResource("/view/layouts/updatePatient.fxml"));
-            mainPane.getChildren().setAll(pane);
-        } catch (Exception e) {
-            logger.log(Level.ERROR, e);
-        }
-    }
-
-    @FXML
-    void loadCheckPatient(ActionEvent event) {
-        Pane pane;
-        try {
-            pane = FXMLLoader.load(getClass().getResource("/view/layouts/searchPatient.fxml"));
             mainPane.getChildren().setAll(pane);
         } catch (Exception e) {
             logger.log(Level.ERROR, e);
