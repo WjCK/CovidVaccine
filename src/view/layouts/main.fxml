@@ -23,12 +23,21 @@
                   <Image url="@../../resources/icons/neck.png" />
                </image>
             </ImageView>
-            <Label layoutX="59.0" layoutY="14.0" prefHeight="48.0" prefWidth="212.0" text="COVID-19" textFill="#8e67cd">
+            <Label id="title" layoutX="53.0" layoutY="14.0" prefHeight="48.0" prefWidth="340.0" stylesheets="@../../resources/css/style.css" text="COVID-19">
                <font>
-                  <Font name="Bodoni MT" size="46.0" />
+                  <Font name="Bodoni MT" size="60.0" />
                </font>
+               <textFill>
+                  <LinearGradient endY="1.0">
+                     <stops>
+                        <Stop color="#a59ef2" />
+                        <Stop color="#455ad0" offset="0.9923371647509578" />
+                        <Stop color="#455ad0" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
             </Label>
-            <Label layoutX="59.0" layoutY="77.0" prefHeight="41.0" prefWidth="375.0" text="Keep Yourself Home Quarentined">
+            <Label layoutX="53.0" layoutY="88.0" prefHeight="41.0" prefWidth="375.0" text="Keep Yourself Home Quarentined">
                <font>
                   <Font name="Gill Sans MT" size="25.0" />
                </font>

@@ -115,3 +115,13 @@
 #radius:hover{
     -fx-background-color: #2a2a35;
 }
+
+#title{
+    /*   */
+}
+
+#outline#title .text {
+    -fx-fill: linear-gradient(to right,#6358c9 0%, #3f56e8 100%);
+    -fx-stroke: #6272a4;
+    -fx-stroke-width: 0.70px;
+}

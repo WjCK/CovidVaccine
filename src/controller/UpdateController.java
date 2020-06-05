@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -54,20 +55,37 @@ public class UpdateController implements Initializable {
     private TableColumn<Patient, Date> clVaccineDate;
 
     @FXML
-    private JFXButton btnNext;
-
-    @FXML
     private JFXTextField txtSearch;
 
     @FXML
     private JFXButton btnSearch;
+
+    @FXML
+    private JFXButton btnBack;
+
+    @FXML
+    private JFXButton btnNext;
 
     PatientService patientService = new PatientServiceImpl();
     ObservableList<Patient> lista = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        btnBack.setFocusTraversable(false);
+        btnSearch.setFocusTraversable(false);
+        btnNext.setFocusTraversable(false);
         loadTable();
+
+        btnBack.setOnAction(event -> {
+            Parent screen;
+            try {
+                screen = FXMLLoader.load(getClass().getResource("/view/layouts/main.fxml"));
+                Scene scene = btnBack.getScene();
+                scene.setRoot(screen);
+            } catch (Exception e) {
+                logger.log(Level.ERROR, e);
+            }
+        });
 
         btnNext.setOnAction(event -> {
             FXMLLoader loader = new FXMLLoader();
