@@ -10,22 +10,132 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="radrius" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="626.0" prefWidth="982.0" stylesheets="@../../resources/css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
       <Pane fx:id="mainPane" layoutX="252.0" prefHeight="626.0" prefWidth="730.0" style="-fx-background-color: #252529;" stylesheets="@../../resources/css/style.css">
          <children>
-            <ImageView fitHeight="714.0" fitWidth="881.0" layoutX="-75.0" layoutY="-88.0" opacity="0.49" pickOnBounds="true">
+            <ImageView fitHeight="738.0" fitWidth="1005.0" layoutY="-73.0" opacity="0.15" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/icons/a.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="714.0" fitWidth="1051.0" layoutX="-180.0" layoutY="-51.0" opacity="0.49" pickOnBounds="true">
                <image>
                   <Image url="@../../resources/icons/neck.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="221.0" fitWidth="276.0" layoutX="527.0" layoutY="405.0" pickOnBounds="true" preserveRatio="true">
+            <Label layoutX="59.0" layoutY="14.0" prefHeight="48.0" prefWidth="212.0" text="COVID-19" textFill="#6232ab">
+               <font>
+                  <Font name="Bodoni MT" size="46.0" />
+               </font>
+            </Label>
+            <Label layoutX="59.0" layoutY="77.0" prefHeight="41.0" prefWidth="375.0" text="Keep Yourself Home Quarentined">
+               <font>
+                  <Font name="Gill Sans MT" size="25.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#6358c9" />
+                        <Stop color="#3f56e8" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <Label cache="true" cacheHint="QUALITY" layoutX="61.0" layoutY="128.0" prefHeight="101.0" prefWidth="332.0" text="Influenza is a contagious respiratory ilness caused by influenza viruses. It can cause mild to severe illness, and at time, can lead to death" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Gill Sans MT" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="235.0" layoutY="306.0" prefHeight="41.0" prefWidth="236.0" text="How Can It Spreads">
+               <font>
+                  <Font name="Gill Sans MT" size="25.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#6358c9" />
+                        <Stop color="#3f56e8" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <ImageView fitHeight="69.0" fitWidth="58.0" layoutX="85.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../resources/icons/hiclipart.com.png" />
+                  <Image url="@../../resources/icons/soda.png" />
                </image>
             </ImageView>
+            <Label layoutX="24.0" layoutY="431.0" prefHeight="69.0" prefWidth="181.0" text="Contamined objects &amp; Sustances" wrapText="true">
+               <font>
+                  <Font name="Gill Sans MT" size="21.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#6358c9" />
+                        <Stop color="#3f56e8" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <Label cache="true" cacheHint="QUALITY" layoutX="20.0" layoutY="500.0" prefHeight="76.0" prefWidth="190.0" text="Flu viruses can cause mild to severe illness. Learn more commom symptoms" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Gill Sans MT" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="48.0" fitWidth="46.0" layoutX="313.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/icons/sick.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="269.0" layoutY="425.0" prefHeight="69.0" prefWidth="181.0" text="Air transmission of Droplets" wrapText="true">
+               <font>
+                  <Font name="Gill Sans MT" size="21.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#6358c9" />
+                        <Stop color="#3f56e8" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <Label cache="true" cacheHint="QUALITY" layoutX="264.0" layoutY="494.0" prefHeight="76.0" prefWidth="190.0" text="A number of tests are avaliable to detect influenza viruses" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Gill Sans MT" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="58.0" fitWidth="69.0" layoutX="585.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/icons/wash.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="544.0" layoutY="425.0" prefHeight="69.0" prefWidth="140.0" text="Transmission among Humans" wrapText="true">
+               <font>
+                  <Font name="Gill Sans MT" size="21.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#6358c9" />
+                        <Stop color="#3f56e8" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <Label cache="true" cacheHint="QUALITY" layoutX="509.0" layoutY="500.0" prefHeight="76.0" prefWidth="200.0" text="Flu and the common cold are both respiratory illnesses  but they are caused by different viruses" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Gill Sans MT" size="16.0" />
+               </font>
+            </Label>
+            <JFXButton id="button" layoutX="421.0" layoutY="148.0" prefHeight="46.0" prefWidth="123.0" stylesheets="@../../resources/css/style.css" text="Learn More" />
+            <JFXButton id="radius" layoutX="572.0" layoutY="148.0" minWidth="47.0" prefHeight="46.0" prefWidth="47.0" stylesheets="@../../resources/css/style.css" text="  " />
+            <FontAwesomeIcon fill="WHITE" glyphName="PLAY" layoutX="593.0" layoutY="176.0" text="" />
          </children></Pane>
       <VBox id="vbox" prefHeight="626.0" prefWidth="256.0" style="-fx-background-color: #252529;" stylesheets="@../../resources/css/style.css">
          <children>
@@ -43,7 +153,7 @@
                   </Label>
                </children>
             </Pane>
-            <JFXButton id="menuButton" fx:id="btnRegisterPatient" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#loadCreatePatient" prefHeight="57.0" prefWidth="242.0" stylesheets="@../../resources/css/style.css" text="Register patient consult" textFill="WHITE">
+            <JFXButton id="menuButton" fx:id="btnRegisterPatient" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" onAction="#loadCreatePatient" prefHeight="65.0" prefWidth="242.0" stylesheets="@../../resources/css/style.css" text="Register patient consult" textFill="WHITE">
                <padding>
                   <Insets left="50.0" />
                </padding>
@@ -51,7 +161,7 @@
                   <FontAwesomeIcon fill="#8f5fd7" glyphName="USER_PLUS" selectionFill="#3044c6" size="20" />
                </graphic>
                <font>
-                  <Font name="MS Outlook" size="14.0" />
+                  <Font name="MS Outlook" size="13.0" />
                </font>
                <effect>
                   <Reflection />
@@ -84,7 +194,7 @@
                </children></Pane>
             <JFXButton id="menuButton" fx:id="btn" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="60.0" prefWidth="242.0" stylesheets="@../../resources/css/style.css" text="About Software" textFill="WHITE">
                <padding>
-                  <Insets left="50.0" />
+                  <Insets left="50.0" right="50.0" />
                </padding>
                <graphic>
                   <FontAwesomeIcon fill="#8f5fd7" glyphName="INFO_CIRCLE" selectionFill="#3044c6" size="20" wrappingWidth="14.571428298950195" />

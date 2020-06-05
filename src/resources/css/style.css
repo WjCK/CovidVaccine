@@ -34,6 +34,11 @@
     -fx-background-color: #2a2a35;
 }
 
+#buttonInfo{
+    -fx-background-color: #22222a;
+    -fx-text-fill: #ffffff;
+}
+
 .table-view .column-header-background{
     -fx-background-color: linear-gradient(#131313 0%, #424141 100%);
 }
@@ -97,14 +102,16 @@
 }
 
 #radius {
+    -fx-background-color: #22222a;
     -fx-hgap: 20px;
-    -fx-padding: 40px;
-
-    -fx-background-color: #2969c0;
+    -fx-padding: 10px;
     -fx-background-radius: 50px;
-
     -fx-border-radius: 50px;
     -fx-border-width: 5px;
-    -fx-border-color: black;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+    -fx-border-color: rgb(59, 70, 161);
+    -fx-effect: dropshadow(three-pass-box, rgba(69, 79, 170, 0.8), 10, 0, 0, 0);
+}
+
+#radius:hover{
+    -fx-background-color: #2a2a35;
 }

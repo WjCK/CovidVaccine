@@ -63,12 +63,10 @@ public class CreateController implements Initializable {
         cmbGender.getItems().add("Male");
         cmbGender.getItems().add("Female");
         cmbGender.setValue("value");
-        try {
-            validateForm();
-        } catch (FormException e1) {
-            e1.printStackTrace();
-        }
-        btnSave.setOnAction((event -> {
+
+        validateForm();
+
+        btnSave.setOnAction(event -> {
             try {
                 PatientService patientService = new PatientServiceImpl();
                 validateBeforeSave();
@@ -76,7 +74,7 @@ public class CreateController implements Initializable {
             } catch (FormException | CustomException | DatabaseException e) {
                 e.printStackTrace();
             }
-        }));
+        });
 
         btnCancel.setOnAction(event -> {
             Parent screen;
@@ -95,7 +93,7 @@ public class CreateController implements Initializable {
      * 
      * @throws FormException
      */
-    private void validateForm() throws FormException {
+    private void validateForm() {
         txtPatientName.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.length() == 0) {
                 if (!newValue.matches("[A-Z a-zÀ-Ÿà-ÿ]+") || oldValue.length() == 0) {
@@ -116,9 +114,9 @@ public class CreateController implements Initializable {
 
         txtWeight.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.length() == 0) {
-                if (!newValue.matches("[0-9]{1,2}[,][0-9]{1}") || oldValue.length() == 0)
+                if (!newValue.matches("[0-9.]+") || oldValue.length() == 0)
                     txtWeight.setText("");
-            } else if (!newValue.matches("[0-9]{1,2}[,][0-9]{1}") || newValue.length() == 0)
+            } else if (!newValue.matches("[0-9.]+") || newValue.length() > 4)
                 txtWeight.setText(oldValue);
         });
 
@@ -146,7 +144,12 @@ public class CreateController implements Initializable {
             throw new FormException("Inform the patient name!", "Patient Name is empty");
         }
 
-        if (cmbGender.getEditor().getText().isEmpty()) {
+        if (!txtPatientName.getText().matches("[A-Z a-zÀ-Ÿà-ÿ]+")) {
+            throw new FormException("Patient name must be 50 characters and",
+                    "Patient Name must have more than 50 characters or containst numbers");
+        }
+
+        if (cmbGender.equals("")) {
             throw new FormException("Select a gender!", "Combo box is empty");
         }
 
@@ -154,8 +157,16 @@ public class CreateController implements Initializable {
             throw new FormException("Input patient age!", "Age field is empty");
         }
 
+        if (!txtAge.getText().matches("\\d+")) {
+            throw new FormException("Patient age cant have letters!", "Age field has letters");
+        }
+
         if (txtWeight.getText().isEmpty()) {
             throw new FormException("Enter a Weight", "Weight field is empty");
+        }
+
+        if (txtWeight.getText().matches("[0-9,]+")) {
+            throw new FormException("Weight has letters!", "Weight field has letters");
         }
 
         if (dateAppointment.getEditor().getText().isEmpty()) {

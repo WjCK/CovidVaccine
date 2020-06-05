@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import model.Patient;
 import service.PatientService;
 import service.PatientServiceImpl;
+import util.FormException;
 
 public class ChangeController implements Initializable {
 
@@ -68,9 +69,10 @@ public class ChangeController implements Initializable {
 
         btnUpdate.setOnAction((event -> {
             try {
+                validateBeforeUpdate();
                 patientService.update(loadPatient());
             } catch (Exception e) {
-                logger.log(Level.ERROR, e);
+                e.printStackTrace();
             }
         }));
 
@@ -117,6 +119,45 @@ public class ChangeController implements Initializable {
         }
 
         return patient;
+    }
+
+    private void validateBeforeUpdate() throws FormException {
+        if (txtPatientName.getText().isEmpty()) {
+            throw new FormException("Inform the patient name!", "Patient Name is empty");
+        }
+
+        if (!txtPatientName.getText().matches("[A-Z a-zÀ-Ÿà-ÿ]+")) {
+            throw new FormException("Patient name must be 50 characters and",
+                    "Patient Name must have more than 50 characters or containst numbers");
+        }
+
+        if (cmbGender.equals("")) {
+            throw new FormException("Select a gender!", "Combo box is empty");
+        }
+
+        if (txtAge.getText().isEmpty()) {
+            throw new FormException("Input patient age!", "Age field is empty");
+        }
+
+        if (!txtAge.getText().matches("\\d+")) {
+            throw new FormException("Patient age cant have letters!", "Age field has letters");
+        }
+
+        if (txtWeight.getText().isEmpty()) {
+            throw new FormException("Enter a Weight", "Weight field is empty");
+        }
+
+        if (txtWeight.getText().matches("[0-9,]+")) {
+            throw new FormException("Weight has letters!", "Weight field has letters");
+        }
+
+        if (txtVaccineDate.getEditor().getText().isEmpty()) {
+            throw new FormException("Input vaccine date", "Vaccine Date is empty");
+        }
+
+        if (!txtVaccineDate.getEditor().getText().matches("[0-3][0-9]/[0-1][0-9]/[0-9]+")) {
+            throw new FormException("try: 00/00/0000", "The date format is invalid");
+        }
     }
 
 }

@@ -7,6 +7,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -15,6 +17,11 @@
    <children>
       <Pane layoutX="265.0" layoutY="213.0" prefHeight="626.0" prefWidth="730.0" style="-fx-background-color: #252529;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+            <ImageView fitHeight="738.0" fitWidth="1005.0" opacity="0.15" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/icons/a.jpg" />
+               </image>
+            </ImageView>
             <Label layoutX="250.0" layoutY="30.0" prefHeight="42.0" prefWidth="299.0" text="Search  appointment" textFill="WHITE">
                <font>
                   <Font name="Rockwell" size="29.0" />

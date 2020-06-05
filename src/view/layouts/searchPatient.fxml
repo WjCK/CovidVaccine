@@ -4,8 +4,12 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -16,6 +20,19 @@
    <children>
       <Pane fx:id="changePane" prefHeight="626.0" prefWidth="730.0" style="-fx-background-color: #252529;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+            <ImageView fitHeight="738.0" fitWidth="1005.0" opacity="0.15" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/icons/a.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="379.0" fitWidth="870.0" layoutX="-82.0" layoutY="106.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/icons/purple.png" />
+               </image>
+               <effect>
+                  <Blend />
+               </effect>
+            </ImageView>
             <GridPane layoutX="229.0" layoutY="65.0" prefHeight="407.0" prefWidth="273.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -37,6 +54,14 @@
                      <effect>
                         <Reflection />
                      </effect></JFXTextField>
+                  <JFXComboBox id="textField" fx:id="cmbGender" prefHeight="28.0" prefWidth="292.0" stylesheets="@../../resources/css/style.css" GridPane.rowIndex="2">
+                     <effect>
+                        <Reflection>
+                           <input>
+                              <ColorAdjust brightness="1.0" />
+                           </input>
+                        </Reflection>
+                     </effect></JFXComboBox>
                   <JFXTextField id="textField" fx:id="txtAge" promptText="Age" stylesheets="@../../resources/css/style.css" GridPane.rowIndex="3">
                      <effect>
                         <Reflection />
@@ -53,20 +78,15 @@
                            </input>
                         </Reflection>
                      </effect></JFXDatePicker>
-                  <JFXComboBox id="textField" fx:id="cmbGender" prefHeight="28.0" prefWidth="292.0" stylesheets="@../../resources/css/style.css" GridPane.rowIndex="2">
-                     <effect>
-                        <Reflection>
-                           <input>
-                              <ColorAdjust brightness="1.0" />
-                           </input>
-                        </Reflection>
-                     </effect></JFXComboBox>
                </children>
             </GridPane>
-            <JFXButton id="button" fx:id="btnCancel" layoutX="191.0" layoutY="541.0" prefHeight="42.0" prefWidth="62.0" stylesheets="@../../resources/css/style.css" text="Cancel" />
+            <JFXButton id="button" fx:id="btnCancel" layoutX="185.0" layoutY="541.0" prefHeight="42.0" prefWidth="68.0" stylesheets="@../../resources/css/style.css" text="Cancel" />
             <JFXButton id="button" fx:id="btnUpdate" layoutX="331.0" layoutY="541.0" prefHeight="42.0" prefWidth="68.0" stylesheets="@../../resources/css/style.css" text="Update" />
-            <JFXButton id="button" fx:id="btnDelete" layoutX="464.0" layoutY="541.0" prefHeight="42.0" prefWidth="62.0" stylesheets="@../../resources/css/style.css" text="Delete" />
+            <JFXButton id="button" fx:id="btnDelete" layoutX="464.0" layoutY="541.0" prefHeight="42.0" prefWidth="68.0" stylesheets="@../../resources/css/style.css" text="Delete" />
          </children>
+         <effect>
+            <DropShadow height="111.19" radius="82.8925" width="222.38" />
+         </effect>
          </Pane>
    </children>
 </AnchorPane>
