@@ -27,6 +27,7 @@ import service.PatientServiceImpl;
 import util.CustomException;
 import util.DatabaseException;
 import util.FormException;
+import util.InfoAlert;
 
 public class CreateController implements Initializable {
 
@@ -58,9 +59,7 @@ public class CreateController implements Initializable {
     private JFXButton btnCancel;
 
     Logger logger;
-
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
     Patient patient = new Patient();
 
     @Override
@@ -68,7 +67,7 @@ public class CreateController implements Initializable {
         setButtonFocus();
         cmbGender.getItems().add("Male");
         cmbGender.getItems().add("Female");
-
+        cmbGender.setValue("value");
         validateForm();
 
         /* save appointment in database */
@@ -78,7 +77,8 @@ public class CreateController implements Initializable {
                 validateBeforeSave();
                 patientService.create(loadPatient());
                 setButtonFocus();
-            } catch (FormException | CustomException | DatabaseException | ParseException e) {
+                throw new InfoAlert("message", "cause");
+            } catch (FormException | CustomException | DatabaseException | ParseException | InfoAlert e) {
                 e.printStackTrace();
             }
         });
@@ -165,7 +165,7 @@ public class CreateController implements Initializable {
                     "Patient Name must have more than 50 characters or containst numbers");
         }
 
-        if (cmbGender.equals("")) {
+        if (!cmbGender.getEditor().getText().equals("Male") || !cmbGender.getEditor().getText().equals("Female")) {
             throw new FormException("Select a gender!", "Combo box is empty");
         }
 
@@ -189,10 +189,6 @@ public class CreateController implements Initializable {
             throw new FormException("Input vaccine date", "Vaccine Date is empty");
         }
 
-        if (!dateAppointment.getEditor().getText().matches("[0-3][0-9]/[0-1][0-9]/[0-9]+")) {
-            throw new FormException("try: 00/00/0000", "The date format is invalid");
-        }
-
         Calendar minDate = Calendar.getInstance();
         minDate.set(2019, Calendar.JULY, 1);
         Calendar maxDate = Calendar.getInstance();
@@ -201,10 +197,16 @@ public class CreateController implements Initializable {
         if (patient.getVaccineDate().after(maxDate.getTime())) {
             throw new FormException("Vaccine date cant be more than 31/2021/12",
                     "Try insert a date not greather than 31/2021/12");
-        } else if (patient.getVaccineDate().before(minDate.getTime())) {
+        }
+        if (patient.getVaccineDate().before(minDate.getTime())) {
             throw new FormException("Vaccine date cant be less than 01/06/2019",
                     "Tente inserir datas acima da data minima");
         }
+
+        if (!dateAppointment.getEditor().getText().matches("[0-3][0-9]/[0-1][0-9]/[0-9]+")) {
+            throw new FormException("try: 00/00/0000", "The date format is invalid");
+        }
+
     }
 
     /**
