@@ -67,7 +67,6 @@ public class CreateController implements Initializable {
         setButtonFocus();
         cmbGender.getItems().add("Male");
         cmbGender.getItems().add("Female");
-        cmbGender.setValue("value");
         validateForm();
 
         /* save appointment in database */
@@ -77,7 +76,7 @@ public class CreateController implements Initializable {
                 validateBeforeSave();
                 patientService.create(loadPatient());
                 setButtonFocus();
-                throw new InfoAlert("message", "cause");
+                throw new InfoAlert("Success!", "Inserting appointment in database");
             } catch (FormException | CustomException | DatabaseException | ParseException | InfoAlert e) {
                 e.printStackTrace();
             }
@@ -141,12 +140,11 @@ public class CreateController implements Initializable {
         patient.setGender(cmbGender.getValue());
         patient.setWeight(Double.parseDouble(txtWeight.getText()));
         try {
-            Date date = (Date) sdf.parse(dateAppointment.getEditor().getText());
-            patient.setVaccineDate(new java.sql.Date(date.getTime()));
+            Date date = new Date(sdf.parse(dateAppointment.getEditor().getText()).getTime());
+            patient.setVaccineDate(date);
         } catch (ParseException e) {
             logger.log(Level.ERROR, e);
         }
-
         return patient;
     }
 
@@ -165,7 +163,7 @@ public class CreateController implements Initializable {
                     "Patient Name must have more than 50 characters or containst numbers");
         }
 
-        if (!cmbGender.getEditor().getText().equals("Male") || !cmbGender.getEditor().getText().equals("Female")) {
+        if (cmbGender.getSelectionModel().getSelectedItem() == null) {
             throw new FormException("Select a gender!", "Combo box is empty");
         }
 
@@ -199,8 +197,8 @@ public class CreateController implements Initializable {
         dateValidate.setTime(sdf.parse(dateAppointment.getEditor().getText()));
 
         if (dateValidate.after(maxDate)) {
-            throw new FormException("Vaccine date cant be more than 31/2021/12",
-                    "Try insert a date not greather than 31/2021/12");
+            throw new FormException("Vaccine date cant be more than 31/12/2021",
+                    "Try insert a date not greather than 31/12/2021");
         } else if (dateValidate.before(minDate)) {
             throw new FormException("Vaccine date cant be less than 01/06/2019",
                     "Tente inserir datas acima da data minima");

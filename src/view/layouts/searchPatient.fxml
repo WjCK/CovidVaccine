@@ -8,7 +8,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -47,11 +46,17 @@
                   <JFXTextField id="textField" fx:id="txtID" editable="false" prefWidth="323.0" promptText="id" stylesheets="@../../resources/css/style.css">
                      <effect>
                         <Reflection />
-                     </effect></JFXTextField>
+                     </effect>
+                     <font>
+                        <Font name="Bookman Old Style" size="14.0" />
+                     </font></JFXTextField>
                   <JFXTextField id="textField" fx:id="txtPatientName" promptText="Patient Name" stylesheets="@../../resources/css/style.css" GridPane.rowIndex="1">
                      <effect>
                         <Reflection />
-                     </effect></JFXTextField>
+                     </effect>
+                     <font>
+                        <Font name="Bookman Old Style" size="14.0" />
+                     </font></JFXTextField>
                   <JFXComboBox id="textField" fx:id="cmbGender" prefHeight="28.0" prefWidth="292.0" stylesheets="@../../resources/css/style.css" GridPane.rowIndex="2">
                      <effect>
                         <Reflection>
@@ -63,11 +68,17 @@
                   <JFXTextField id="textField" fx:id="txtAge" promptText="Age" stylesheets="@../../resources/css/style.css" GridPane.rowIndex="3">
                      <effect>
                         <Reflection />
-                     </effect></JFXTextField>
+                     </effect>
+                     <font>
+                        <Font name="Bookman Old Style" size="14.0" />
+                     </font></JFXTextField>
                   <JFXTextField id="textField" fx:id="txtWeight" promptText="Weight" stylesheets="@../../resources/css/style.css" GridPane.rowIndex="4">
                      <effect>
                         <Reflection />
-                     </effect></JFXTextField>
+                     </effect>
+                     <font>
+                        <Font name="Bookman Old Style" size="14.0" />
+                     </font></JFXTextField>
                   <JFXDatePicker id="textField" fx:id="txtVaccineDate" defaultColor="#405aa8" prefHeight="29.0" prefWidth="373.0" stylesheets="@../../resources/css/style.css" GridPane.rowIndex="5">
                      <effect>
                         <Reflection bottomOpacity="1.0">
@@ -108,9 +119,6 @@
             <FontAwesomeIcon fill="WHITE" glyphName="LONG_ARROW_UP" layoutX="219.0" layoutY="406.0" size="20" />
             <FontAwesomeIcon fill="WHITE" glyphName="EDIT" layoutX="216.0" layoutY="473.0" size="20" />
          </children>
-         <effect>
-            <DropShadow height="111.19" radius="82.8925" width="222.38" />
-         </effect>
          </Pane>
    </children>
 </AnchorPane>

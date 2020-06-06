@@ -10,6 +10,10 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,6 +25,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import model.Patient;
 import service.PatientService;
 import service.PatientServiceImpl;
@@ -33,6 +39,9 @@ public class UpdateController implements Initializable {
 
     @FXML
     private AnchorPane updateAnchorPane;
+
+    @FXML
+    private Pane updatePane;
 
     @FXML
     private TableView<Patient> tableView;
@@ -97,13 +106,23 @@ public class UpdateController implements Initializable {
                     e.printStackTrace();
                 }
             } else {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/view/layouts/searchPatient.fxml"));
                 try {
-                    Parent parent = loader.load();
-                    ChangeController changeController = loader.getController();
-                    changeController.initData(tableView.getSelectionModel().getSelectedItem());
-                    updateAnchorPane.getChildren().setAll(parent);
+                    Parent root = FXMLLoader.load(getClass().getResource("/view/layouts/searchPatient.fxml"));
+                    Scene scene = btnNext.getScene();
+
+                    root.translateXProperty().set(0 - scene.getWidth());
+
+                    Pane parentPane = (Pane) scene.getRoot();
+                    updatePane.getChildren().addAll(root);
+
+                    Timeline timeline = new Timeline();
+                    KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_OUT);
+                    KeyFrame kf = new KeyFrame(Duration.seconds(0.8), kv);
+                    timeline.getKeyFrames().add(kf);
+                    timeline.setOnFinished(event1 -> {
+                        parentPane.getChildren().remove(updatePane);
+                    });
+                    timeline.play();
                 } catch (IOException e) {
                     logger.log(Level.ERROR, e);
                 }

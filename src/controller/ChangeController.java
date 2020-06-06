@@ -12,15 +12,24 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import model.Patient;
 import service.PatientService;
 import service.PatientServiceImpl;
 import util.FormException;
+import util.InfoAlert;
 
 public class ChangeController implements Initializable {
 
@@ -28,6 +37,9 @@ public class ChangeController implements Initializable {
 
     @FXML
     private AnchorPane searchAnchorPane;
+
+    @FXML
+    private Pane changePane;
 
     @FXML
     private JFXTextField txtID;
@@ -64,11 +76,23 @@ public class ChangeController implements Initializable {
 
         /* load previous screen */
         btnCancel.setOnAction((event -> {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/view/layouts/updatePatient.fxml"));
             try {
-                Parent parent = loader.load();
-                searchAnchorPane.getChildren().setAll(parent);
+                Parent root = FXMLLoader.load(getClass().getResource("/view/layouts/updatePatient.fxml"));
+                Scene scene = btnCancel.getScene();
+
+                root.translateXProperty().set(0 - scene.getWidth());
+
+                Pane parentPane = (Pane) scene.getRoot();
+                changePane.getChildren().addAll(root);
+
+                Timeline timeline = new Timeline();
+                KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_OUT);
+                KeyFrame kf = new KeyFrame(Duration.seconds(0.8), kv);
+                timeline.getKeyFrames().add(kf);
+                timeline.setOnFinished(event1 -> {
+                    parentPane.getChildren().remove(changePane);
+                });
+                timeline.play();
             } catch (IOException e) {
                 logger.log(Level.ERROR, e);
             }
@@ -79,6 +103,7 @@ public class ChangeController implements Initializable {
             try {
                 validateBeforeUpdate();
                 patientService.update(loadPatient());
+                throw new InfoAlert("Success", "Successfully updated appointment in database");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -88,6 +113,7 @@ public class ChangeController implements Initializable {
         btnDelete.setOnAction(event -> {
             try {
                 patientService.delete(loadPatient().getId());
+                throw new InfoAlert("Success", "Successfully deleted appointment in database");
             } catch (Exception e) {
                 logger.log(Level.ERROR, e);
             }

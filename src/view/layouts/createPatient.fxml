@@ -94,7 +94,7 @@
                         <Reflection />
                      </effect>
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Bookman Old Style" size="14.0" />
                      </font>
                   </JFXTextField>
                   <JFXDatePicker fx:id="dateAppointment" defaultColor="#4059a9" editable="false" prefHeight="34.0" prefWidth="377.0" promptText="Vaccine Date" stylesheets="@../../resources/css/style.css" GridPane.rowIndex="5">
