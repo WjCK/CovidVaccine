@@ -6,6 +6,7 @@ import java.lang.System.Logger.Level;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -69,6 +70,7 @@ public class ChangeController implements Initializable {
     private JFXButton btnDelete;
 
     PatientService patientService = new PatientServiceImpl();
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -204,8 +206,9 @@ public class ChangeController implements Initializable {
      * Validate form before update in database
      * 
      * @throws FormException
+     * @throws ParseException
      */
-    private void validateBeforeUpdate() throws FormException {
+    private void validateBeforeUpdate() throws FormException, ParseException {
         if (txtPatientName.getText().isEmpty()) {
             throw new FormException("Inform the patient name!", "Patient Name is empty");
         }
@@ -215,7 +218,7 @@ public class ChangeController implements Initializable {
                     "Patient Name must have more than 50 characters or containst numbers");
         }
 
-        if (cmbGender.equals("")) {
+        if (cmbGender.getSelectionModel().getSelectedItem() == null) {
             throw new FormException("Select a gender!", "Combo box is empty");
         }
 
@@ -237,6 +240,23 @@ public class ChangeController implements Initializable {
 
         if (txtVaccineDate.getEditor().getText().isEmpty()) {
             throw new FormException("Input vaccine date", "Vaccine Date is empty");
+        }
+
+        Calendar minDate = Calendar.getInstance();
+        minDate.set(2019, Calendar.JULY, 1);
+        Calendar maxDate = Calendar.getInstance();
+        maxDate.set(2021, Calendar.DECEMBER, 31);
+
+        Calendar dateValidate = Calendar.getInstance();
+
+        dateValidate.setTime(sdf.parse(txtVaccineDate.getEditor().getText()));
+
+        if (dateValidate.after(maxDate)) {
+            throw new FormException("Vaccine date cant be more than 31/12/2021",
+                    "Try insert a date not greather than 31/12/2021");
+        } else if (dateValidate.before(minDate)) {
+            throw new FormException("Vaccine date cant be less than 01/06/2019",
+                    "Tente inserir datas acima da data minima");
         }
 
         if (!txtVaccineDate.getEditor().getText().matches("[0-3][0-9]/[0-1][0-9]/[0-9]+")) {
