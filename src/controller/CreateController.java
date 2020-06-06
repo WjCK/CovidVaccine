@@ -194,11 +194,14 @@ public class CreateController implements Initializable {
         Calendar maxDate = Calendar.getInstance();
         maxDate.set(2021, Calendar.DECEMBER, 31);
 
-        if (patient.getVaccineDate().after(maxDate.getTime())) {
+        Calendar dateValidate = Calendar.getInstance();
+
+        dateValidate.setTime(sdf.parse(dateAppointment.getEditor().getText()));
+
+        if (dateValidate.after(maxDate)) {
             throw new FormException("Vaccine date cant be more than 31/2021/12",
                     "Try insert a date not greather than 31/2021/12");
-        }
-        if (patient.getVaccineDate().before(minDate.getTime())) {
+        } else if (dateValidate.before(minDate)) {
             throw new FormException("Vaccine date cant be less than 01/06/2019",
                     "Tente inserir datas acima da data minima");
         }
