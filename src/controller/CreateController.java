@@ -3,9 +3,10 @@ package controller;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.URL;
-import java.util.Date;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -58,6 +59,10 @@ public class CreateController implements Initializable {
 
     Logger logger;
 
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+    Patient patient = new Patient();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setButtonFocus();
@@ -73,7 +78,7 @@ public class CreateController implements Initializable {
                 validateBeforeSave();
                 patientService.create(loadPatient());
                 setButtonFocus();
-            } catch (FormException | CustomException | DatabaseException e) {
+            } catch (FormException | CustomException | DatabaseException | ParseException e) {
                 e.printStackTrace();
             }
         });
@@ -131,14 +136,12 @@ public class CreateController implements Initializable {
      * @return
      */
     private Patient loadPatient() {
-        Patient patient = new Patient();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         patient.setPatientName(txtPatientName.getText());
         patient.setAge(Integer.parseInt(txtAge.getText()));
         patient.setGender(cmbGender.getValue());
         patient.setWeight(Double.parseDouble(txtWeight.getText()));
         try {
-            Date date = sdf.parse(dateAppointment.getEditor().getText());
+            Date date = (Date) sdf.parse(dateAppointment.getEditor().getText());
             patient.setVaccineDate(new java.sql.Date(date.getTime()));
         } catch (ParseException e) {
             logger.log(Level.ERROR, e);
@@ -152,7 +155,7 @@ public class CreateController implements Initializable {
      * 
      * @throws FormException
      */
-    private void validateBeforeSave() throws FormException {
+    private void validateBeforeSave() throws FormException, ParseException {
         if (txtPatientName.getText().isEmpty()) {
             throw new FormException("Inform the patient name!", "Patient Name is empty");
         }
@@ -189,8 +192,24 @@ public class CreateController implements Initializable {
         if (!dateAppointment.getEditor().getText().matches("[0-3][0-9]/[0-1][0-9]/[0-9]+")) {
             throw new FormException("try: 00/00/0000", "The date format is invalid");
         }
+
+        Calendar minDate = Calendar.getInstance();
+        minDate.set(2019, Calendar.JULY, 1);
+        Calendar maxDate = Calendar.getInstance();
+        maxDate.set(2021, Calendar.DECEMBER, 31);
+
+        if (patient.getVaccineDate().after(maxDate.getTime())) {
+            throw new FormException("Vaccine date cant be more than 31/2021/12",
+                    "Try insert a date not greather than 31/2021/12");
+        } else if (patient.getVaccineDate().before(minDate.getTime())) {
+            throw new FormException("Vaccine date cant be less than 01/06/2019",
+                    "Tente inserir datas acima da data minima");
+        }
     }
 
+    /**
+     * set button focus
+     */
     private void setButtonFocus() {
         btnCancel.setFocusTraversable(false);
         btnSave.setFocusTraversable(false);
