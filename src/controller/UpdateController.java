@@ -107,7 +107,7 @@ public class UpdateController implements Initializable {
                 }
             } else {
                 try {
-                    Parent root = FXMLLoader.load(getClass().getResource("/view/layouts/searchPatient.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/view/layouts/changePatient.fxml"));
                     Scene scene = btnNext.getScene();
 
                     root.translateXProperty().set(0 - scene.getWidth());
