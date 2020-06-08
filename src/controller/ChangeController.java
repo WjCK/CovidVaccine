@@ -74,8 +74,8 @@ public class ChangeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        validateForm();
         setButtonFocus();
+        validateForm();
 
         /* load previous screen */
         btnCancel.setOnAction((event -> {
@@ -104,9 +104,9 @@ public class ChangeController implements Initializable {
         /* update appointment in database */
         btnUpdate.setOnAction((event -> {
             try {
+                setButtonFocus();
                 validateBeforeUpdate();
                 patientService.update(loadPatient());
-                setButtonFocus();
                 throw new InfoAlert("Success", "Successfully updated appointment in database");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -117,6 +117,7 @@ public class ChangeController implements Initializable {
         btnDelete.setOnAction(event -> {
             try {
                 patientService.delete(loadPatient().getId());
+                setButtonFocus();
                 throw new InfoAlert("Success", "Successfully deleted appointment in database");
             } catch (Exception e) {
                 e.printStackTrace();
