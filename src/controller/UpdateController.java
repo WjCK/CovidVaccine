@@ -106,23 +106,13 @@ public class UpdateController implements Initializable {
                     e.printStackTrace();
                 }
             } else {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/view/layouts/changePatient.fxml"));
                 try {
-                    Parent root = FXMLLoader.load(getClass().getResource("/view/layouts/changePatient.fxml"));
-                    Scene scene = btnNext.getScene();
-
-                    root.translateXProperty().set(0 - scene.getWidth());
-
-                    Pane parentPane = (Pane) scene.getRoot();
-                    updatePane.getChildren().addAll(root);
-
-                    Timeline timeline = new Timeline();
-                    KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_OUT);
-                    KeyFrame kf = new KeyFrame(Duration.seconds(0.8), kv);
-                    timeline.getKeyFrames().add(kf);
-                    timeline.setOnFinished(event1 -> {
-                        parentPane.getChildren().remove(updatePane);
-                    });
-                    timeline.play();
+                    Parent parent = loader.load();
+                    ChangeController changeController = loader.getController();
+                    changeController.initData(tableView.getSelectionModel().getSelectedItem());
+                    updateAnchorPane.getChildren().setAll(parent);
                 } catch (IOException e) {
                     logger.log(Level.ERROR, e);
                 }

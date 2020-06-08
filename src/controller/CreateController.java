@@ -76,6 +76,7 @@ public class CreateController implements Initializable {
                 validateBeforeSave();
                 patientService.create(loadPatient());
                 setButtonFocus();
+                clearFields();
                 throw new InfoAlert("Success!", "Inserting appointment in database");
             } catch (FormException | CustomException | DatabaseException | ParseException | InfoAlert e) {
                 e.printStackTrace();
@@ -216,5 +217,16 @@ public class CreateController implements Initializable {
     private void setButtonFocus() {
         btnCancel.setFocusTraversable(false);
         btnSave.setFocusTraversable(false);
+    }
+
+    /**
+     * clear fields after save apointment
+     */
+    private void clearFields() {
+        txtPatientName.setText("");
+        txtAge.setText("");
+        txtWeight.setText("");
+        dateAppointment.getEditor().setText("");
+        cmbGender.valueProperty().set(null);
     }
 }
