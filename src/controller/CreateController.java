@@ -202,7 +202,7 @@ public class CreateController implements Initializable {
             throw new FormException("Vaccine date cant be more than 31/12/2021",
                     "Try insert a date not greather than 31/12/2021");
         } else if (dateValidate.before(minDate)) {
-            throw new FormException("Vaccine date cant be less than 01/06/2020",
+            throw new FormException("Vaccine date cant be less than 01/07/2020",
                     "Tente inserir datas acima da data minima");
         }
 

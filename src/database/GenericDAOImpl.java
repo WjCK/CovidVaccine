@@ -315,6 +315,7 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
                 }
                 sqlBuilder.append(column.columnName());
                 sqlBuilder.append(" = ");
+
                 if (isUsingQuotes(field.getType())) {
                     sqlBuilder.append("'");
                     sqlBuilder.append(field.get(object));
