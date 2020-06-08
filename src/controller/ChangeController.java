@@ -121,6 +121,12 @@ public class ChangeController implements Initializable {
                 throw new InfoAlert("Success", "Successfully deleted appointment in database");
             } catch (Exception e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    closeView();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -272,5 +278,24 @@ public class ChangeController implements Initializable {
         btnCancel.setFocusTraversable(false);
         btnDelete.setFocusTraversable(false);
         btnUpdate.setFocusTraversable(false);
+    }
+
+    private void closeView() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/layouts/updatePatient.fxml"));
+        Scene scene = btnCancel.getScene();
+
+        root.translateXProperty().set(0 - scene.getWidth());
+
+        Pane parentPane = (Pane) scene.getRoot();
+        changePane.getChildren().addAll(root);
+
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_OUT);
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.8), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.setOnFinished(event1 -> {
+            parentPane.getChildren().remove(changePane);
+        });
+        timeline.play();
     }
 }
