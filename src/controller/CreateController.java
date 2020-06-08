@@ -160,16 +160,16 @@ public class CreateController implements Initializable {
         }
 
         if (!txtPatientName.getText().matches("[A-Z a-zÀ-Ÿà-ÿ]+")) {
-            throw new FormException("Patient name must be 50 characters and",
-                    "Patient Name must have more than 50 characters or containst numbers");
+            throw new FormException("Patient's name must contain up to 50 characters, and cannot contain numbers",
+                    "Patient's name must contain up to 50 characters, and cannot contain numbers");
         }
 
         if (cmbGender.getSelectionModel().getSelectedItem() == null) {
-            throw new FormException("Select a gender!", "Combo box is empty");
+            throw new FormException("Select a gender!", "Gender field is empty");
         }
 
         if (txtAge.getText().isEmpty()) {
-            throw new FormException("Input patient age!", "Age field is empty");
+            throw new FormException("Age field is empty!", "Input patient age!");
         }
 
         if (!txtAge.getText().matches("\\d+")) {
@@ -181,7 +181,8 @@ public class CreateController implements Initializable {
         }
 
         if (txtWeight.getText().matches("[0-9,]+")) {
-            throw new FormException("Weight has letters!", "Weight field has letters");
+            throw new FormException("The weight field is not in the ideal format!",
+                    "The weight field must be in the format: ex: 75.5");
         }
 
         if (dateAppointment.getEditor().getText().isEmpty()) {
@@ -189,7 +190,7 @@ public class CreateController implements Initializable {
         }
 
         Calendar minDate = Calendar.getInstance();
-        minDate.set(2019, Calendar.JULY, 1);
+        minDate.set(2020, Calendar.JULY, 1);
         Calendar maxDate = Calendar.getInstance();
         maxDate.set(2021, Calendar.DECEMBER, 31);
 
@@ -201,7 +202,7 @@ public class CreateController implements Initializable {
             throw new FormException("Vaccine date cant be more than 31/12/2021",
                     "Try insert a date not greather than 31/12/2021");
         } else if (dateValidate.before(minDate)) {
-            throw new FormException("Vaccine date cant be less than 01/06/2019",
+            throw new FormException("Vaccine date cant be less than 01/06/2020",
                     "Tente inserir datas acima da data minima");
         }
 

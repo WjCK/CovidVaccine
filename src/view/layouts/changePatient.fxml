@@ -79,7 +79,7 @@
                      <font>
                         <Font name="Bookman Old Style" size="14.0" />
                      </font></JFXTextField>
-                  <JFXDatePicker id="textField" fx:id="txtVaccineDate" defaultColor="#405aa8" prefHeight="29.0" prefWidth="373.0" stylesheets="@../../resources/css/style.css" GridPane.rowIndex="5">
+                  <JFXDatePicker id="textField" fx:id="txtVaccineDate" defaultColor="#405aa8" editable="false" prefHeight="29.0" prefWidth="373.0" stylesheets="@../../resources/css/style.css" GridPane.rowIndex="5">
                      <effect>
                         <Reflection bottomOpacity="1.0">
                            <input>

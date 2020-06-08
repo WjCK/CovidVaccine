@@ -22,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import util.InfoAlert;
 
 public class MainController implements Initializable {
 
@@ -106,6 +107,15 @@ public class MainController implements Initializable {
                 timeline.play();
             } catch (IOException e) {
                 logger.log(Level.ERROR, e);
+            }
+        });
+
+        btnAbout.setOnAction(event -> {
+            try {
+                throw new InfoAlert("Theme: Covid Vaccine\n" + "Made by: Welder Novaes\n" + "Teacher: Gilcimar Divino\n"
+                        + "Course: Client-server Development", "Show Programn details");
+            } catch (InfoAlert e) {
+                e.printStackTrace();
             }
         });
     }
